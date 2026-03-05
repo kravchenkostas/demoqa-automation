@@ -14,4 +14,13 @@ public interface ConfigForTests extends Config{
 
     @Key("password")
     String password();
+
+    @Key("db.url")
+    String dbUrl();
+
+    @Key("db.user")
+    String dbUser();
+
+    @Key("db.password")
+    String dbPassword();
 }
