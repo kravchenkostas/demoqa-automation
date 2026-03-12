@@ -3,6 +3,7 @@ package com.stas.tests.api.tests;
 import com.stas.tests.ui.pages.LoginPage;
 import com.stas.tests.ui.pages.ProfilePage;
 import com.stas.tests.utils.DatabaseUtils;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.aeonbits.owner.ConfigFactory;
@@ -18,21 +19,11 @@ public class LoginUITest extends BaseUITest {
 
         LoginPage loginPage = new LoginPage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
-        /*String decryptedPassword =
-                CryptoUtils.decrypt(config.password());
+
+
 
         loginPage.open();
-        loginPage.login(config.username(), decryptedPassword);
-
-        Assert.assertTrue(profilePage.isPageOpened(),
-                "Profile page should be opened after successful login");*/
-        String encryptedPassword =
-                DatabaseUtils.getEncryptedPasswordByUsername(config.username());
-        String decryptedPassword =
-                CryptoUtils.decrypt(encryptedPassword);
-
-        loginPage.open();
-        loginPage.login(config.username(), decryptedPassword);
+        loginPage.login(config.username(), config.password());
 
         Assert.assertTrue(profilePage.isPageOpened(),
                 "Profile page should be opened after successful login");
