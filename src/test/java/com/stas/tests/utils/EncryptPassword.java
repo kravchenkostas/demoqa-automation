@@ -3,7 +3,7 @@ package com.stas.tests.utils;
 public class EncryptPassword {
     public static void main(String[] args) {
 
-        String plainPassword = "Password123!";
+        String plainPassword = "qwerty";
 
         String encrypted = CryptoUtils.encrypt(plainPassword);
 

@@ -1,4 +1,5 @@
 package com.stas.tests.api.tests;
+import com.stas.driver.DriverFactory;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,8 +16,8 @@ public class BaseUITest {
     Dimension newDimension = new Dimension(width, height);
 
     @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void setup() {
+        driver = DriverFactory.createDriver();
         driver.manage().window().setSize(newDimension);
     }
 

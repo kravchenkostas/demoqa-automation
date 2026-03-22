@@ -1,5 +1,6 @@
 package com.stas.tests.ui.pages;
 
+import com.stas.tests.utils.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,6 +10,7 @@ import io.qameta.allure.Step;
 
 public class LoginPage {
     private WebDriver driver;
+    private ElementActions actions;
 
     private By usernameInput = By.id("userName");
     private By passwordInput = By.id("password");
@@ -17,6 +19,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        this.actions = new ElementActions(driver, 10);
     }
 
     @Step("Open login page")
@@ -26,19 +29,17 @@ public class LoginPage {
 
     @Step("Enter username: {username}")
     public void enterUsername(String username) {
-        driver.findElement(usernameInput).clear();
-        driver.findElement(usernameInput).sendKeys(username);
+        actions.type(usernameInput, username);
     }
 
     @Step("Enter password")
     public void enterPassword(String password) {
-        driver.findElement(passwordInput).clear();
-        driver.findElement(passwordInput).sendKeys(password);
+        actions.type(passwordInput, password);
     }
 
     @Step("Click login button")
     public void clickLogin() {
-        driver.findElement(loginButton).click();
+        actions.click(loginButton);
     }
 
     @Step("Login as user: {username}")
