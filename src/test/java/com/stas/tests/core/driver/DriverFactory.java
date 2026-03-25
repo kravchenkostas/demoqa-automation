@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
+import java.util.Locale;
 
 public class DriverFactory {
 
@@ -17,7 +18,12 @@ public class DriverFactory {
     public static WebDriver createDriver() {
         WebDriver driver;
 
-        switch (config.browser()) {
+        String browser = config.browser();
+        if (browser == null || browser.isBlank()) {
+            browser = "chrome";
+        }
+
+        switch (browser.toLowerCase(Locale.ROOT)) {
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (config.headless()) {
