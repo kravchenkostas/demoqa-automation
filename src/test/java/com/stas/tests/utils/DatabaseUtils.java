@@ -1,12 +1,6 @@
 package com.stas.tests.utils;
 
-import com.stas.tests.config.ConfigForTests;
-import org.aeonbits.owner.ConfigFactory;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.stas.tests.core.config.ConfigForTests;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.sql.Connection;

@@ -1,23 +1,22 @@
-package com.stas.tests.utils;
+package com.stas.tests.core.config;
+
+import org.aeonbits.owner.Converter;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-public class EncryptPassword {
+public class DecryptConverter implements Converter<String> {
     private static final String DEFAULT_SECRET = "MySuperSecretKey";
 
-    public static void main(String[] args) {
-
-        String plainPassword = "qwerty";
-        String encrypted = encrypt(plainPassword);
-
-        System.out.println("Encrypted password:");
-        System.out.println(encrypted);
+    @Override
+    public String convert(Method method, String input) {
+        return decrypt(input);
     }
 
-    private static String encrypt(String value) {
+    private String decrypt(String encryptedValue) {
         try {
             String secret = System.getenv("CRYPTO_SECRET");
             if (secret == null || secret.isBlank()) {
@@ -26,10 +25,10 @@ public class EncryptPassword {
 
             SecretKeySpec key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "AES");
             Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, key);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(value.getBytes(StandardCharsets.UTF_8)));
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedValue)), StandardCharsets.UTF_8);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to encrypt value", e);
+            throw new RuntimeException("Failed to decrypt config value", e);
         }
     }
 }
