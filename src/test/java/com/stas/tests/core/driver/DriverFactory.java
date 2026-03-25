@@ -41,10 +41,6 @@ public class DriverFactory {
                 driver = new ChromeDriver(chromeOptions);
         }
 
-        if (!config.headless()) {
-            driver.manage().window().maximize();
-        }
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.implicitTimeout()));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(config.pageLoadTimeout()));
 

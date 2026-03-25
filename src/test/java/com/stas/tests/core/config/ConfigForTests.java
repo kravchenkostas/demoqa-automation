@@ -13,7 +13,7 @@ public interface ConfigForTests extends Config {
     String browser();
 
     @Key("headless")
-    @DefaultValue("false")
+    @DefaultValue("true")
     boolean headless();
 
     @Key("base.url")

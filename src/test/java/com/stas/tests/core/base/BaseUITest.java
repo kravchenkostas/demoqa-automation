@@ -3,6 +3,7 @@ package com.stas.tests.core.base;
 import com.stas.tests.core.driver.DriverFactory;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -18,7 +19,11 @@ public class BaseUITest {
     @BeforeMethod
     public void setup() {
         driver = DriverFactory.createDriver();
-        driver.manage().window().setSize(newDimension);
+        try {
+            driver.manage().window().setSize(newDimension);
+        } catch (WebDriverException ignored) {
+            // Some CI/browser combinations do not support window resizing reliably.
+        }
     }
 
     @AfterMethod
