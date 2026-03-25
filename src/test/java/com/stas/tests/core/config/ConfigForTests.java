@@ -1,15 +1,17 @@
-package com.stas.tests.config;
+package com.stas.tests.core.config;
 
 import org.aeonbits.owner.Config;
-import com.stas.tests.config.DecryptConverter;
 
 @Config.Sources({
         "classpath:config.properties"
 })
-
-public interface ConfigForTests extends Config{
+public interface ConfigForTests extends Config {
     @Key("browser")
     String browser();
+
+    @Key("headless")
+    @DefaultValue("false")
+    boolean headless();
 
     @Key("base.url")
     String baseUrl();

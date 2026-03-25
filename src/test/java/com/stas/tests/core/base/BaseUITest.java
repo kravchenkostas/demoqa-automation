@@ -1,8 +1,8 @@
-package com.stas.tests.api.tests;
-import com.stas.driver.DriverFactory;
+package com.stas.tests.core.base;
+
+import com.stas.tests.core.driver.DriverFactory;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

@@ -3,3 +3,5 @@ target/
 *.iml
 allure-report/
 allure-results/
+src/test/resources/config.properties
+src/test/java/com/stas/tests/utils/CryptoUtils.java

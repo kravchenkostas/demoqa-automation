@@ -1,5 +1,6 @@
 package com.stas.tests.ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,11 +23,13 @@ public class BookStorePage {
         this.driver = driver;
     }
 
+    @Step("Check Book Store page is opened")
     public boolean isOpened() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput)).isDisplayed();
     }
 
+    @Step("Search book by title: {title}")
     public void searchBook(String title) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(searchInput));
@@ -38,6 +41,7 @@ public class BookStorePage {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(bookTitles, 0));
     }
 
+    @Step("Get all book titles from search results")
     public List<String> getAllBookTitles() {
         By bookTitles = By.cssSelector("td span[id^='see-book-'] a");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

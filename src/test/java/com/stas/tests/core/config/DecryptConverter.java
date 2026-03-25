@@ -1,4 +1,4 @@
-package com.stas.tests.config;
+package com.stas.tests.core.config;
 
 import org.aeonbits.owner.Converter;
 import com.stas.tests.utils.CryptoUtils;
